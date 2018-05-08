@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215579002241650}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RayPointRight
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 54495310690876278}
   - component: {fileID: 65422495335101122}
   - component: {fileID: 114693870969688080}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,10 +54,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4064158088116602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RayPointLeft
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4744170804864360}
   - component: {fileID: 96453230483326754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4099351435940512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RayPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4464719717631832}
   - component: {fileID: 33490023915995572}
   - component: {fileID: 23230007842815268}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,10 +117,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4996398086412820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RayPointMiddle
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -368,7 +368,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 100
+  m_Time: 1
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -447,3 +447,4 @@ MonoBehaviour:
   - {fileID: 4064158088116602}
   - {fileID: 4996398086412820}
   - {fileID: 4215579002241650}
+  destinationCollider: {fileID: 0}
