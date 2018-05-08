@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203335015794960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.17}
+  m_LocalPosition: {x: -0, y: 0, z: -0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4064158088116602}
@@ -198,8 +198,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102688731437164}
-  m_LocalRotation: {x: -0, y: 0.0014235943, z: -0, w: 0.999999}
-  m_LocalPosition: {x: 5.35, y: 1.2, z: -22.38}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.35, y: 1.2, z: -25.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4464719717631832}
@@ -368,7 +368,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 3
+  m_Time: 100
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -435,9 +435,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23da63809336db94f9d6445461217ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
+  bounceLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  deadLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   speed: 10
   raycastDistance: 0.5
   rayOrigins:
