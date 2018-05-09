@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class GameCycleManager : MonoBehaviour {
+public class Manager : MonoBehaviour {
 
-
-    public static GameCycleManager Instance
+    public static Manager Instance
     {
         get
         {
             if (m_Instance != null) return m_Instance;
 
-            m_Instance = FindObjectOfType<GameCycleManager>();
+            m_Instance = FindObjectOfType<Manager>();
 
             if (m_Instance != null) return m_Instance;
 
+            //create new
             GameObject gameObject = new GameObject("GameManager");
             gameObject = Instantiate(gameObject);
-            m_Instance = gameObject.AddComponent<GameCycleManager>();
-           
+            m_Instance = gameObject.AddComponent<Manager>();
 
             return m_Instance;
         }
-            
-    }
 
-    private static GameCycleManager m_Instance;
+    }
 
     public CinemachineVirtualCamera virtualMainCamera;
     public CinemachineVirtualCamera wholeSceneVirtualCamera;
@@ -42,24 +39,28 @@ public class GameCycleManager : MonoBehaviour {
     public Path[] paths;
 
 
-    private List<VehicleBehaviour> vehicles = new List<VehicleBehaviour>();
+
+    private static Manager m_Instance;
+    private List<MoveableBehaviour> moveables = new List<MoveableBehaviour>();
     private int m_CurrentIndex;
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
 
-        if(Instance!=this)
+        if (Instance != this)
         {
             Destroy(gameObject);
         }
 
-        
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    
-        if(Input.GetKeyDown(KeyCode.W))
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.W))
         {
             wholeSceneVirtualCamera.enabled = true;
         }
@@ -70,9 +71,9 @@ public class GameCycleManager : MonoBehaviour {
         }
 
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            SpawnNewPath();
+            SpawnNewMovable();
 
             SwitchBackToOriginalCamera();
 
@@ -80,24 +81,24 @@ public class GameCycleManager : MonoBehaviour {
 
     }
 
-    public void SpawnNewPath()
+    public void SpawnNewMovable()
     {
         if (m_CurrentIndex >= paths.Length) return;
 
+        //Instatiate new moveable
+        MoveableBehaviour moveable = Instantiate(paths[m_CurrentIndex].spawnObject, paths[m_CurrentIndex].spawnTransform.position, paths[m_CurrentIndex].spawnTransform.rotation).GetComponent<MoveableBehaviour>();
+        moveable.destinationCollider = paths[m_CurrentIndex].destination;
+        moveable.path = LineDrawer.Instance.GetLines()[LineDrawer.Instance.GetLines().Count - 1].lineRenderer;
+        moveable.PlayBack();
 
-        VehicleBehaviour vehicle = Instantiate(paths[m_CurrentIndex].spawnObject, paths[m_CurrentIndex].spawnTransform.position, paths[m_CurrentIndex].spawnTransform.rotation).GetComponent<VehicleBehaviour>();
+        //Set follow point
+        virtualMainCamera.Follow = moveable.transform;
+        
+        //Play back Other
+        PlayBackOtherMovables();
 
-
-        vehicle.destinationCollider = paths[m_CurrentIndex].destination;
-
-
-        vehicles.Add(vehicle);
-
-        virtualMainCamera.Follow = vehicle.transform;
-
-
-        PlayBackOtherVehicles();
-
+        //Add to list 
+        moveables.Add(moveable);
     }
 
 
@@ -111,21 +112,21 @@ public class GameCycleManager : MonoBehaviour {
     {
         wholeSceneVirtualCamera.enabled = false;
     }
-    
-    private void PlayBackOtherVehicles()
+
+    private void PlayBackOtherMovables()
     {
-        for (int i = 0; i < vehicles.Count - 1; i++)
+        for (int i = 0; i < moveables.Count; i++)
         {
-            vehicles[i].gameObject.SetActive(true);
-            vehicles[i].PlayBack();
+            moveables[i].gameObject.SetActive(true);
+            moveables[i].PlayBack();
         }
     }
 
     private void EndPlayBack()
     {
-        for (int i = 0; i < vehicles.Count - 1; i++)
+        for (int i = 0; i < moveables.Count - 1; i++)
         {
-            vehicles[i].gameObject.SetActive(false);
+            moveables[i].gameObject.SetActive(false);
         }
     }
 
@@ -140,7 +141,5 @@ public class GameCycleManager : MonoBehaviour {
         EndPlayBack();
         m_CurrentIndex++;
     }
-
-
 
 }
