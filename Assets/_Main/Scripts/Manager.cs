@@ -88,7 +88,10 @@ public class Manager : MonoBehaviour {
         //Instatiate new moveable
         MoveableBehaviour moveable = Instantiate(paths[m_CurrentIndex].spawnObject, paths[m_CurrentIndex].spawnTransform.position, paths[m_CurrentIndex].spawnTransform.rotation).GetComponent<MoveableBehaviour>();
         moveable.destinationCollider = paths[m_CurrentIndex].destination;
-        moveable.path = LineDrawer.Instance.GetLines()[LineDrawer.Instance.GetLines().Count - 1].lineRenderer;
+
+        LineRenderer currentLine = LineDrawer.Instance.GetLines()[LineDrawer.Instance.GetLines().Count - 1].lineRenderer;
+        moveable.recordPositions = new Vector3[currentLine.positionCount];
+        currentLine.GetPositions(moveable.recordPositions);
         moveable.PlayBack();
 
         //Set follow point

@@ -7,13 +7,13 @@ public class MoveableBehaviour : MonoBehaviour {
 
     public LayerMask deadLayerMask;
 
-    public float speed = 10f;
+    public float maxSpeed = 10f;
     public float rotationSpeed = 5f;
-
-    public float raycastDistance = 0.2f;
+    public float maxDistanceCheck = 7f;
+    public float force = 15f; 
 
     [HideInInspector]
-    public LineRenderer path;
+    public Vector3[] recordPositions;
 
     [HideInInspector]
     public Collider destinationCollider;
@@ -22,13 +22,13 @@ public class MoveableBehaviour : MonoBehaviour {
 
     private bool m_IsPlayingBack = false;
 
-    private Vector3[] m_RecordPositions;
 
 
     private Vector3 m_OriginalPosition;
     private Quaternion m_OriginalRotation;
 
     private bool m_IsEnded;
+
 
     void Awake()
     {
@@ -55,11 +55,18 @@ public class MoveableBehaviour : MonoBehaviour {
 
     private void Move()
     {
-        //m_RigidBody.AddForce(transform.forward * 20);
-        //m_RigidBody.MoveRotation(m_RigidBody.rotation * Quaternion.Euler(0, m_Horizontal * 2, 0));
+        if (m_RigidBody.velocity.sqrMagnitude < maxSpeed * maxSpeed)
+        {
+            m_RigidBody.AddForce(transform.forward.normalized * force);
+        }
 
-        Vector3 direction = transform.forward.normalized;
-        m_RigidBody.velocity = new Vector3(direction.x * speed, m_RigidBody.velocity.y, direction.z * speed);
+        //Vector3 direction = transform.forward.normalized;
+
+        //Vector3 desiredVelocity = new Vector3(direction.x * speed, m_RigidBody.velocity.y, direction.z * speed);
+
+        //m_RigidBody.velocity = Vector3.Slerp(m_RigidBody.velocity, desiredVelocity,Time.deltaTime * 4f);
+
+        //m_RigidBody.velocity = new Vector3(direction.x * speed, m_RigidBody.velocity.y, direction.z * speed);
     }
 
 
@@ -99,29 +106,31 @@ public class MoveableBehaviour : MonoBehaviour {
 
         int i = 0;
 
-        while (i < m_RecordPositions.Length)
+        while (i < recordPositions.Length)
         {
 
-            Vector3 from = m_RecordPositions[i];
+            Vector3 from = recordPositions[i];
             from.y = 0;
             Vector3 to = transform.position;
             to.y = 0;
 
             Vector3 direction = (from - to);
 
-            if ((direction).sqrMagnitude <= 5f)
+            if ((direction).sqrMagnitude <= maxDistanceCheck * maxDistanceCheck)
             {
                 i++;
 
-                if (i == m_RecordPositions.Length) break;
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime* rotationSpeed);
+                if (i == recordPositions.Length) break;
 
             }
-            else
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * rotationSpeed);
-            }
+
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * rotationSpeed);
+
+            ////OR use cross product
+            //float rotateAmount = Vector3.Cross(direction, transform.forward).y;
+            //m_RigidBody.angularVelocity = new Vector3(0, -rotateAmount * rotationSpeed, 0);
+
 
 
             yield return null;
@@ -132,15 +141,14 @@ public class MoveableBehaviour : MonoBehaviour {
 
     public void PlayBack()
     {
-        m_RecordPositions = new Vector3[path.positionCount];
-        path.GetPositions(m_RecordPositions);
-
-
         StartCoroutine(InternalPlayBack());
     }
 
-
-
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1, 1, 0, 0.75F);
+        Gizmos.DrawSphere(transform.position, maxDistanceCheck);
+    }
 
 
 }
