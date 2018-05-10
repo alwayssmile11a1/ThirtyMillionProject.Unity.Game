@@ -28,7 +28,6 @@ public class LineDrawer : MonoBehaviour {
 
 
     public Line linePrefab;
-    //private BoxCollider m_BoxCollider;
 
     private Line m_CurrentLine;
     private List<Line> m_Lines = new List<Line>();
@@ -41,47 +40,32 @@ public class LineDrawer : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        //m_BoxCollider = GetComponentInChildren<BoxCollider>();
 
     }
 	
 
-	// Update is called once per frame
-	void Update () {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartDrawing();
-        }
-
-
-        if (Input.GetMouseButton(0))
-        {
-            AddDrawingPoint();
-
-        }
-
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            EndDrawing();
-        }
-
-
-
-    }
-
 
     public void StartDrawing()
     {
-        m_CurrentLine = Instantiate(linePrefab);
-        m_Lines.Add(m_CurrentLine);
+        if(m_CurrentLine==null)
+        {
+            m_CurrentLine = Instantiate(linePrefab);
+            m_Lines.Add(m_CurrentLine);
+        }
+        else
+        {
+            m_CurrentLine.lineRenderer.positionCount = 0;
+        }
+
     }
 
 
 
     public void AddDrawingPoint()
     {
+
+        if (m_CurrentLine == null) return;
+
         //Get ray from camera point to mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -101,28 +85,23 @@ public class LineDrawer : MonoBehaviour {
 
     public void EndDrawing()
     {
-
-        //m_CurrentLine = null;
-
-        //if (m_LineRenderer.positionCount < 2) return;
-
-        ////Debug.Log((m_LineRenderer.GetPosition(0) + m_LineRenderer.GetPosition(1)) / 2);
-        
-        ////Rotate box collider
-        //Vector3 direction = m_LineRenderer.GetPosition(0) - m_LineRenderer.GetPosition(1);
-        //m_BoxCollider.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
-
-        ////Set size
-        //m_BoxCollider.size = new Vector3(1, 1, direction.magnitude);
-
-        ////Set position
-        //m_BoxCollider.transform.position = (m_LineRenderer.GetPosition(0) + m_LineRenderer.GetPosition(1)) / 2;
+        m_CurrentLine = null;
 
     }
     
     public List<Line> GetLines()
     {
         return m_Lines;
+    }
+
+    public void Clear()
+    {
+        m_Lines.Clear();
+    }
+
+    public Line GetCurrentLine()
+    {
+        return m_CurrentLine;
     }
 
 }

@@ -12,21 +12,20 @@ public class MoveableBehaviour : MonoBehaviour {
     public float maxDistanceCheck = 7f;
     public float force = 15f; 
 
+    
     [HideInInspector]
-    public Vector3[] recordPositions;
+    public LineRenderer lineRenderer;
 
     [HideInInspector]
     public Collider destinationCollider;
 
+
+    private Vector3[] m_RecordPositions;
+    private Queue<Vector3> m_LinePositions;
     private Rigidbody m_RigidBody;
-
     private bool m_IsPlayingBack = false;
-
-
-
     private Vector3 m_OriginalPosition;
     private Quaternion m_OriginalRotation;
-
     private bool m_IsEnded;
 
 
@@ -39,36 +38,16 @@ public class MoveableBehaviour : MonoBehaviour {
     }
 
 
-    private void Update()
+    public void FixedUpdate()
     {
 
-        if (m_IsEnded) return;
+        if (!m_IsPlayingBack) return;
 
-        if (m_IsPlayingBack) return;
-
-    }
-
-    void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void Move()
-    {
         if (m_RigidBody.velocity.sqrMagnitude < maxSpeed * maxSpeed)
         {
             m_RigidBody.AddForce(transform.forward.normalized * force);
         }
-
-        //Vector3 direction = transform.forward.normalized;
-
-        //Vector3 desiredVelocity = new Vector3(direction.x * speed, m_RigidBody.velocity.y, direction.z * speed);
-
-        //m_RigidBody.velocity = Vector3.Slerp(m_RigidBody.velocity, desiredVelocity,Time.deltaTime * 4f);
-
-        //m_RigidBody.velocity = new Vector3(direction.x * speed, m_RigidBody.velocity.y, direction.z * speed);
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -106,10 +85,10 @@ public class MoveableBehaviour : MonoBehaviour {
 
         int i = 0;
 
-        while (i < recordPositions.Length)
+        while (i < m_RecordPositions.Length)
         {
 
-            Vector3 from = recordPositions[i];
+            Vector3 from = m_RecordPositions[i];
             from.y = 0;
             Vector3 to = transform.position;
             to.y = 0;
@@ -120,8 +99,13 @@ public class MoveableBehaviour : MonoBehaviour {
             {
                 i++;
 
-                if (i == recordPositions.Length) break;
+                if(m_LinePositions.Count>0)
+                {
+                    m_LinePositions.Dequeue();
+                    lineRenderer.SetPositions(m_LinePositions.ToArray());
+                }
 
+                if (i == m_RecordPositions.Length) break;
             }
 
 
@@ -141,7 +125,26 @@ public class MoveableBehaviour : MonoBehaviour {
 
     public void PlayBack()
     {
+        StopAllCoroutines();
         StartCoroutine(InternalPlayBack());
+    }
+
+
+    public void Stop()
+    {
+        StopAllCoroutines();
+        m_IsPlayingBack = false;
+        m_RigidBody.velocity = Vector3.zero;
+        transform.position = m_OriginalPosition;
+        transform.rotation = m_OriginalRotation;
+    }
+
+    public void SaveRecord()
+    {
+        m_RecordPositions = new Vector3[lineRenderer.positionCount];
+        lineRenderer.GetPositions(m_RecordPositions);
+        m_LinePositions = new Queue<Vector3>(m_RecordPositions);
+
     }
 
     public void OnDrawGizmosSelected()

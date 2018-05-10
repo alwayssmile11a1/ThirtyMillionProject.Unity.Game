@@ -25,9 +25,6 @@ public class Manager : MonoBehaviour {
 
     }
 
-    public CinemachineVirtualCamera virtualMainCamera;
-    public CinemachineVirtualCamera wholeSceneVirtualCamera;
-
     [System.Serializable]
     public class Path
     {
@@ -36,13 +33,21 @@ public class Manager : MonoBehaviour {
         public Collider destination;
     }
 
-    public Path[] paths;
+    [Header("Camera")]
+    public CinemachineVirtualCamera virtualMainCamera;
+    public CinemachineVirtualCamera wholeSceneVirtualCamera;
 
+    [Header("Canvas")]
+    public Canvas startCanvas;
+    public Canvas endCanvas;  
+
+    public Path[] paths;
 
 
     private static Manager m_Instance;
     private List<MoveableBehaviour> moveables = new List<MoveableBehaviour>();
     private int m_CurrentIndex;
+    private MoveableBehaviour m_CurrentMoveable;
 
     // Use this for initialization
     void Awake()
@@ -52,7 +57,6 @@ public class Manager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
 
     }
 
@@ -73,11 +77,36 @@ public class Manager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            SpawnNewMovable();
-
-            SwitchBackToOriginalCamera();
+            StartPath();
 
         }
+
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            EndPath();
+            SpawnNewMovable();
+        }
+
+
+        //if (LineDrawer.Instance.GetCurrentLine()!=null)
+        //{
+        //    LineDrawer.Instance.AddDrawingPoint();
+        //}
+
+
+        //if (Input.GetMouseButton(0))
+        //{
+        //    LineDrawer.Instance.AddDrawingPoint();
+
+        //}
+
+
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    LineDrawer.Instance.EndDrawing();
+        //}
+
 
     }
 
@@ -86,22 +115,22 @@ public class Manager : MonoBehaviour {
         if (m_CurrentIndex >= paths.Length) return;
 
         //Instatiate new moveable
-        MoveableBehaviour moveable = Instantiate(paths[m_CurrentIndex].spawnObject, paths[m_CurrentIndex].spawnTransform.position, paths[m_CurrentIndex].spawnTransform.rotation).GetComponent<MoveableBehaviour>();
-        moveable.destinationCollider = paths[m_CurrentIndex].destination;
+        m_CurrentMoveable = Instantiate(paths[m_CurrentIndex].spawnObject, paths[m_CurrentIndex].spawnTransform.position, paths[m_CurrentIndex].spawnTransform.rotation).GetComponent<MoveableBehaviour>();
+        m_CurrentMoveable.destinationCollider = paths[m_CurrentIndex].destination;
 
-        LineRenderer currentLine = LineDrawer.Instance.GetLines()[LineDrawer.Instance.GetLines().Count - 1].lineRenderer;
-        moveable.recordPositions = new Vector3[currentLine.positionCount];
-        currentLine.GetPositions(moveable.recordPositions);
-        moveable.PlayBack();
+        //Setup canvases
+        startCanvas.gameObject.SetActive(true);
+        startCanvas.transform.position = m_CurrentMoveable.transform.position + m_CurrentMoveable.transform.forward * 2;
+        endCanvas.gameObject.SetActive(true);
+        endCanvas.transform.position = paths[m_CurrentIndex].destination.transform.position;
 
         //Set follow point
-        virtualMainCamera.Follow = moveable.transform;
-        
-        //Play back Other
-        PlayBackOtherMovables();
+        virtualMainCamera.Follow = m_CurrentMoveable.transform;
 
         //Add to list 
-        moveables.Add(moveable);
+        moveables.Add(m_CurrentMoveable);
+
+        m_CurrentIndex++;
     }
 
 
@@ -118,7 +147,7 @@ public class Manager : MonoBehaviour {
 
     private void PlayBackOtherMovables()
     {
-        for (int i = 0; i < moveables.Count; i++)
+        for (int i = 0; i < moveables.Count - 1; i++)
         {
             moveables[i].gameObject.SetActive(true);
             moveables[i].PlayBack();
@@ -127,14 +156,28 @@ public class Manager : MonoBehaviour {
 
     private void EndPlayBack()
     {
-        for (int i = 0; i < moveables.Count - 1; i++)
+        for (int i = 0; i < moveables.Count; i++)
         {
-            moveables[i].gameObject.SetActive(false);
+            moveables[i].Stop();
         }
     }
 
     public void StartPath()
     {
+        startCanvas.gameObject.SetActive(false);
+        endCanvas.gameObject.SetActive(false);
+
+        if (m_CurrentMoveable == null) return;
+
+        //Set path to move
+        m_CurrentMoveable.lineRenderer = LineDrawer.Instance.GetLines()[LineDrawer.Instance.GetLines().Count - 1].lineRenderer;
+        m_CurrentMoveable.SaveRecord();
+
+        m_CurrentMoveable.PlayBack();
+
+        //Play back Other
+        PlayBackOtherMovables();
+        
         SwitchBackToOriginalCamera();
     }
 
@@ -142,7 +185,7 @@ public class Manager : MonoBehaviour {
     {
         SwitchToWholeSceneCamera();
         EndPlayBack();
-        m_CurrentIndex++;
+        m_CurrentMoveable = null;
     }
 
 }
