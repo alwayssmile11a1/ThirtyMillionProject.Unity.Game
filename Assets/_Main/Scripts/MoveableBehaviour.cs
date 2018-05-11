@@ -87,7 +87,6 @@ public class MoveableBehaviour : MonoBehaviour {
 
         while (i < m_RecordPositions.Length)
         {
-
             Vector3 from = m_RecordPositions[i];
             from.y = 0;
             Vector3 to = transform.position;
