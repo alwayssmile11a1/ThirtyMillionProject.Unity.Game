@@ -61,14 +61,21 @@ public class LineDrawer : MonoBehaviour {
     }
 
 
-
     public void AddDrawingPoint()
     {
 
         if (m_CurrentLine == null) return;
 
+
+
+#if UNITY_EDITOR
         //Get ray from camera point to mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+#else
+        //Get ray from camera point to mouse position
+        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+#endif
+
 
 
         //Cast ray
@@ -84,7 +91,7 @@ public class LineDrawer : MonoBehaviour {
                 //Vector3 direction = newPosition - m_CurrentLine.lineRenderer.GetPosition(m_CurrentLine.lineRenderer.positionCount - 1);
                 if(Physics.Linecast(m_CurrentLine.lineRenderer.GetPosition(m_CurrentLine.lineRenderer.positionCount - 1), newPosition, undrawableLayerMask.value))
                 {
-                    Debug.Log("ds");
+
                     return;
                 }
 

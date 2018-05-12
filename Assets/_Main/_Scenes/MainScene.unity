@@ -421,26 +421,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4902433953959764, guid: ab6d7d7cfeb68da41aaca317d97070a9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -513,123 +493,6 @@ Prefab:
       propertyPath: paths.Array.data[2].destination
       value: 
       objectReference: {fileID: 885798632}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].eventID
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1468198062}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartDrawing
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_TypeName
-      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].eventID
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddDrawingPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].eventID
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartDrawing
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1468198062}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1468198062}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114018296458172452, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_TypeName
-      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 114433969492156774, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: drawableLayerMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 114433969492156774, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: unDrawableLayerMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 114433969492156774, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: undrawableLayerMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6d7d7cfeb68da41aaca317d97070a9, type: 2}
   m_IsPrefabAsset: 0
@@ -1479,12 +1342,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1468198062 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114433969492156774, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 334015982}
-  m_Script: {fileID: 11500000, guid: ba78fda097cc17140920373e54e62ace, type: 3}
 --- !u!1 &1499558282
 GameObject:
   m_ObjectHideFlags: 0

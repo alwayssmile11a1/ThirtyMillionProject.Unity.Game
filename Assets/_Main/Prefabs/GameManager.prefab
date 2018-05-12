@@ -228,12 +228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 13
+  - eventID: 5
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114433969492156774}
-          m_MethodName: StartDrawing
+          m_MethodName: AddDrawingPoint
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -245,12 +245,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 5
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 114433969492156774}
-          m_MethodName: AddDrawingPoint
+          m_MethodName: StartDrawing
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -421,6 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba78fda097cc17140920373e54e62ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  undrawableLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   linePrefab: {fileID: 114420176594929776, guid: ab50a725d21b07f46ade15ce39dea740,
     type: 2}
 --- !u!114 &114480188125438462
