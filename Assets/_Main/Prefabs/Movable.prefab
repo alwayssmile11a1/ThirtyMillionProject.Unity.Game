@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504514086441524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.35, y: 1.2, z: -25.5}
+  m_LocalPosition: {x: 66.5, y: 1.2, z: -25.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4529775976477250}
@@ -326,7 +326,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504514086441524}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b6965b1c79465424f8839d5d0ac1e133, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -435,12 +435,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df2b6e261dc1594996b85c5abc9df40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadLayerMask:
+  hurtLayerMask:
     serializedVersion: 2
     m_Bits: 256
   maxSpeed: 15
   rotationSpeed: 4
-  maxDistanceCheck: 4
+  maxDistanceCheck: 3
   force: 16
   lineRenderer: {fileID: 0}
   destinationCollider: {fileID: 0}

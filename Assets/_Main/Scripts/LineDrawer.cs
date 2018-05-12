@@ -27,6 +27,9 @@ public class LineDrawer : MonoBehaviour {
     private static LineDrawer m_Instance;
 
 
+
+    public LayerMask undrawableLayerMask;
+
     public Line linePrefab;
 
     private Line m_CurrentLine;
@@ -43,8 +46,6 @@ public class LineDrawer : MonoBehaviour {
 
     }
 	
-
-
     public void StartDrawing()
     {
         if(m_CurrentLine==null)
@@ -69,12 +70,25 @@ public class LineDrawer : MonoBehaviour {
         //Get ray from camera point to mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+
         //Cast ray
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, 1000f))
         {
             Vector3 newPosition = hitInfo.point;
             newPosition.y = 1;
+
+            //Check obstacles between new position and previous position 
+            if (m_CurrentLine.lineRenderer.positionCount > 0)
+            {
+                //Vector3 direction = newPosition - m_CurrentLine.lineRenderer.GetPosition(m_CurrentLine.lineRenderer.positionCount - 1);
+                if(Physics.Linecast(m_CurrentLine.lineRenderer.GetPosition(m_CurrentLine.lineRenderer.positionCount - 1), newPosition, undrawableLayerMask.value))
+                {
+                    Debug.Log("ds");
+                    return;
+                }
+
+            }
 
             m_CurrentLine.AddDrawingPoint(newPosition);
         }

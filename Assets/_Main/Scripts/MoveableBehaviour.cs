@@ -5,7 +5,7 @@ using Gamekit3D;
 
 public class MoveableBehaviour : MonoBehaviour {
 
-    public LayerMask deadLayerMask;
+    public LayerMask hurtLayerMask;
 
     public float maxSpeed = 10f;
     public float rotationSpeed = 5f;
@@ -51,11 +51,13 @@ public class MoveableBehaviour : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (deadLayerMask.Contains(collision.gameObject))
+        if (hurtLayerMask.Contains(collision.gameObject))
         {
-            transform.position = m_OriginalPosition;
-            transform.rotation = m_OriginalRotation;
-            m_RigidBody.velocity = Vector3.zero;
+            if(Vector3.Dot(transform.forward, collision.contacts[0].normal) <= 0)
+            {
+                m_RigidBody.AddForce(collision.contacts[0].normal * 3, ForceMode.Impulse);
+            }
+            
         }
         
     }
@@ -98,9 +100,10 @@ public class MoveableBehaviour : MonoBehaviour {
             {
                 i++;
 
-                if(m_LinePositions.Count>0)
+                if(m_LinePositions.Count>0 && i>1)
                 {
                     m_LinePositions.Dequeue();
+                    lineRenderer.positionCount--;
                     lineRenderer.SetPositions(m_LinePositions.ToArray());
                 }
 
