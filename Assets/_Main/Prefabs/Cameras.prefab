@@ -247,7 +247,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -275,8 +275,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 134.5, y: 128.3, z: 99.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 185.42706, y: 128.3, z: 99.1}
+  m_Center: {x: -1.4158058, y: 0, z: 0}
 --- !u!81 &81429325059020828
 AudioListener:
   m_ObjectHideFlags: 1
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_PositionBlending: 0
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
