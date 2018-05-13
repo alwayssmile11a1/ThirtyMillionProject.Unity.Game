@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1549610667699358
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 9999
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -231,7 +231,7 @@ TrailRenderer:
       serializedVersion: 2
       key0: {r: 1, g: 0.8482759, b: 0, a: 0.40392157}
       key1: {r: 1, g: 1, b: 0, a: 1}
-      key2: {r: 1, g: 0.93103445, b: 0, a: 0}
+      key2: {r: 1, g: 0.93103445, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -247,7 +247,7 @@ TrailRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -261,7 +261,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 5
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!114 &114666198998834768
@@ -279,8 +279,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxSpeed: 15
-  rotationSpeed: 3
+  rotationSpeed: 2
   maxDistanceCheck: 3
   force: 15
-  lineRenderer: {fileID: 0}
-  destinationCollider: {fileID: 0}

@@ -89,24 +89,6 @@ public class Manager : MonoBehaviour {
         }
 
 
-        //if (LineDrawer.Instance.GetCurrentLine()!=null)
-        //{
-        //    LineDrawer.Instance.AddDrawingPoint();
-        //}
-
-
-        //if (Input.GetMouseButton(0))
-        //{
-        //    LineDrawer.Instance.AddDrawingPoint();
-
-        //}
-
-
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    LineDrawer.Instance.EndDrawing();
-        //}
-
 
     }
 
@@ -116,13 +98,13 @@ public class Manager : MonoBehaviour {
 
         //Instatiate new moveable
         m_CurrentMoveable = Instantiate(paths[m_CurrentIndex].spawnObject, paths[m_CurrentIndex].spawnTransform.position, paths[m_CurrentIndex].spawnTransform.rotation).GetComponent<MoveableBehaviour>();
-        m_CurrentMoveable.destinationCollider = paths[m_CurrentIndex].destination;
+        //m_CurrentMoveable.destinationCollider = paths[m_CurrentIndex].destination;
 
-        //Setup canvases
-        startCanvas.gameObject.SetActive(true);
-        startCanvas.transform.position = m_CurrentMoveable.transform.position + m_CurrentMoveable.transform.forward * 2;
-        endCanvas.gameObject.SetActive(true);
-        endCanvas.transform.position = paths[m_CurrentIndex].destination.transform.position;
+        ////Setup canvases
+        //startCanvas.gameObject.SetActive(true);
+        //startCanvas.transform.position = m_CurrentMoveable.transform.position + m_CurrentMoveable.transform.forward * 2;
+        //endCanvas.gameObject.SetActive(true);
+        //endCanvas.transform.position = paths[m_CurrentIndex].destination.transform.position;
 
         //Set follow point
         virtualMainCamera.Follow = m_CurrentMoveable.transform;
@@ -164,16 +146,12 @@ public class Manager : MonoBehaviour {
 
     public void StartPath()
     {
-        startCanvas.gameObject.SetActive(false);
-        endCanvas.gameObject.SetActive(false);
+        //startCanvas.gameObject.SetActive(false);
+        //endCanvas.gameObject.SetActive(false);
 
         if (m_CurrentMoveable == null) return;
 
-        //Set path to move
-        m_CurrentMoveable.lineRenderer = LineDrawer.Instance.GetLines()[LineDrawer.Instance.GetLines().Count - 1].lineRenderer;
-        m_CurrentMoveable.SaveRecord();
-
-        m_CurrentMoveable.PlayBack();
+        m_CurrentMoveable.Play();
 
         //Play back Other
         PlayBackOtherMovables();

@@ -279,15 +279,15 @@ MonoBehaviour:
   startCanvas: {fileID: 223895306221674238}
   endCanvas: {fileID: 223885765657899564}
   paths:
-  - spawnObject: {fileID: 1504514086441524, guid: 64ec088f5fa8121429b2a822ad4d0d4d,
+  - spawnObject: {fileID: 1950456253135822, guid: f717e62407c30564ba42cd67d7d9bd6b,
       type: 2}
     spawnTransform: {fileID: 0}
     destination: {fileID: 0}
-  - spawnObject: {fileID: 1504514086441524, guid: 64ec088f5fa8121429b2a822ad4d0d4d,
+  - spawnObject: {fileID: 1950456253135822, guid: f717e62407c30564ba42cd67d7d9bd6b,
       type: 2}
     spawnTransform: {fileID: 0}
     destination: {fileID: 0}
-  - spawnObject: {fileID: 1504514086441524, guid: 64ec088f5fa8121429b2a822ad4d0d4d,
+  - spawnObject: {fileID: 1950456253135822, guid: f717e62407c30564ba42cd67d7d9bd6b,
       type: 2}
     spawnTransform: {fileID: 0}
     destination: {fileID: 0}

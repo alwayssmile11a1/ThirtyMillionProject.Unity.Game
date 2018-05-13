@@ -1275,12 +1275,6 @@ Prefab:
       propertyPath: paths.Array.data[2].destination
       value: 
       objectReference: {fileID: 231386021}
-    - target: {fileID: 114110839992111786, guid: ab6d7d7cfeb68da41aaca317d97070a9,
-        type: 2}
-      propertyPath: paths.Array.data[0].spawnObject
-      value: 
-      objectReference: {fileID: 1950456253135822, guid: f717e62407c30564ba42cd67d7d9bd6b,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6d7d7cfeb68da41aaca317d97070a9, type: 2}
   m_IsPrefabAsset: 0
