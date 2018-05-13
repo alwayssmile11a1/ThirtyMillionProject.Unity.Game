@@ -278,8 +278,8 @@ MonoBehaviour:
   hurtLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  maxSpeed: 12
-  rotationSpeed: 8
+  maxSpeed: 15
+  rotationSpeed: 3
   maxDistanceCheck: 3
   force: 15
   lineRenderer: {fileID: 0}

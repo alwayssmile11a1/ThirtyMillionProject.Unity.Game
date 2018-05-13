@@ -37,11 +37,35 @@ public class MoveableBehaviour : MonoBehaviour {
 
     }
 
+    public void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+
+            //Get ray from camera point to mouse position
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Cast ray
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo, 1000f))
+            {
+                Vector3 from = hitInfo.point;
+                from.y = 0;
+
+                Vector3 to = transform.position;
+                to.y = 0;
+
+                Vector3 direction = from - to;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * rotationSpeed);
+            }
+        }
+
+    }
 
     public void FixedUpdate()
     {
 
-        if (!m_IsPlayingBack) return;
+        //if (!m_IsPlayingBack) return;
 
         if (m_RigidBody.velocity.sqrMagnitude < maxSpeed * maxSpeed)
         {
